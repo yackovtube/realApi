@@ -1,0 +1,72 @@
+<!-- /content -->
+<div>
+    <!-- Report Title -->
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">{{report.reportName}}</h1>
+        </div>
+    </div>
+    <!-- /#Report Title -->
+
+    <div class="row">
+        <div class="col-lg-5">
+            <div ng-repeat="chart in report.chartList" class="panel panel-primary" ng-if="$index % 3 == 0">
+                <div class="panel-heading">
+                    <i class="fa fa-{{chart.type}}-chart fa-1x"></i> {{chart.name}}
+                    <div class="pull-right" ng-hide="!report.userData.isLoggedIn">
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">
+                            Actions
+                            <span class="caret"></span>
+                        </button>
+                            <ul class="dropdown-menu pull-right" role="menu">
+                                <li>
+                                    <a href="" ng-click="report.editChart(chart)">Edit Parameters</a>
+                                </li>
+                                <li class="divider"></li>
+                                <li>
+                                    <a href="" ng-click="report.deleteChart(chart)">Remove from Dashboard</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel-body">
+                    <div id="{{chart.element}}" report-chart="{{chart}}"></div>
+                    <h4>Total: {{chart.totalData}}</h4>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-5">
+            <div ng-repeat="chart in report.chartList" class="panel panel-primary" ng-if="$index % 3 != 0">
+                <div class="panel-heading">
+                    <i class="fa fa-{{chart.type}}-chart fa-1x"></i> {{chart.name}}
+                    <div class="pull-right" ng-hide="!report.userData.isLoggedIn">
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">
+                            Actions
+                            <span class="caret"></span>
+                        </button>
+                            <ul class="dropdown-menu pull-right" role="menu">
+                                <li>
+                                    <a href="" ng-click="report.editChart(chart)">Edit Parameters</a>
+                                </li>
+                                <li class="divider"></li>
+                                <li>
+                                    <a href="" ng-click="report.deleteChart(chart)">Remove from Dashboard</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel-body">
+                    <div id="{{chart.element}}" report-chart="{{chart}}"></div>
+                    <h4>Total: {{chart.totalData}}</h4>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /#Report Chart -->
+
+</div>
+<!-- /#content -->

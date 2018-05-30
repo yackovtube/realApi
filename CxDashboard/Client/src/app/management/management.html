@@ -1,0 +1,195 @@
+<div class="panel-body">
+    <!-- Nav tabs -->
+    <ul class="nav nav-tabs">
+        <li role="presentation" class="active"><a href="management/#CreateChart" data-toggle="tab">Create Chart</a></li>
+        <li role="presentation"><a href="management/#MainDashboard" data-toggle="tab">Main Dashboard</a></li>
+    </ul>
+
+    <!-- Tab panes -->
+    <div class="tab-content">
+        <div class="tab-pane fade in active" id="CreateChart">
+            <h4>Create new chart</h4>
+            <form class="form-horizontal" name="reportForm">
+                <fieldset>
+                    <div class="form-group" ng-class="{'has-error':ReportForm.inputChartName.$invalid &&
+                        ReportForm.inputChartName.$dirty}">
+                        <label class="col-md-2 control-label" for="management.inputChartName">Chart name</label>
+                        <div class="col-md-4">
+                            <input name="inputChartName" id="inputChartName" type="text" class="form-control" placeholder="Chart name (requiered)" ng-model="management.report.chartName"
+                                required>
+                        </div>
+                        <span class="help-block hes-error">
+                            <span ng-show="ReportForm.inputChartName.$error.required">
+                                Report name is required
+                            </span>
+                        </span>
+                    </div>
+                    <br />
+                    <div class="form-group">
+                        <label class="col-md-2 control-label" for="management.selectReportCategory">Select report category</label>
+                        <div class="col-md-4">
+                            <select name="categorySelect" id="categorySelect" class="form-control" ng-change="management.categorySelected()" ng-model="management.report.categoryId">
+                                <option ng-repeat="option in management.availableCategoryOptions" value="{{option.categoryId}}">{{option.categoryName}}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-2 control-label" for="management.selectReportName">Select report name</label>
+                        <div class="col-md-4">
+                            <select name="repeatSelect" id="repeatSelect" class="form-control" ng-model="management.report.reportName">
+                                <option ng-repeat="option in management.availableReportNameOptions" value="{{option.reportId}}">{{option.reportName}}</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-md-2 control-label" for="management.selectQueryId">Select query name</label>
+                        <div class="col-md-4">
+                            <select name="chartSelect" id="chartSelect" class="form-control" ng-change="management.querySelected()" ng-model="management.report.queryId">
+                                <option ng-repeat="option in management.availableQueriesOptions" value="{{option.id}}">{{option.name}}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <ul class="nav nav-pills">
+                        <li ng-click="management.setSelected('pie')" role="presentation" class="active" data-toggle="tooltip" data-placement="top" title="Pie chart"><a href="management/#PieChart" data-toggle="tab"><i class="fa fa-pie-chart"></i></a></li>
+                        <li ng-click="management.setSelected('linear')" role="presentation" data-toggle="tooltip" data-placement="top" title="Linear chart"><a href="management/#LinearChart" data-toggle="tab"><i class="fa fa-line-chart"></i></a></li>
+                    </ul>
+                    <br />
+                    <div class="tab-pane fade in active" id="PieChart">
+                        <div class="form-group">
+                            <label class="col-md-2 control-label" for="management.selectColumn">Group by</label>
+                            <div class="col-md-4">
+                                <select name="columnSelect" id="columnSelect" class="form-control" ng-change="" ng-model="management.report.columnReferenceName">
+                                    <option ng-repeat="option in management.availableColumnOptions" value="{{option.referenceName}}">{{option.name}}</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-2 control-label" for="management.selectColumnForAggregation">Aggregation field</label>
+                            <div class="col-md-4">
+                                <select name="aggregationColumnSelect" id="aggregationColumnSelect" class="form-control" ng-model="management.report.aggregationColumnReferenceName">
+                                    <option ng-repeat="option in management.availableAggregationFields" value="{{option.referenceName}}">{{option.name}}</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-2 control-label" for="management.selectDataContent">Show value/percentage</label>
+                            <div class="col-md-4">
+                                <select name="columnSelect" id="columnSelect" class="form-control" ng-model="management.report.dataShowType">
+                                    <option value="value">Value</option>
+                                    <option value="percentage">Percentage</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="LinearChart">
+
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-4 col-md-offset-2">
+                            <span>
+                    <button class="btn btn-primary"
+                            style="margin-right:10px"
+                            ng-click="management.submit()"
+                            ng-disabled="reportForm.$invalid">
+                        Save chart
+                    </button>
+                </span>
+                        </div>
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+        <div class="tab-pane fade" id="MainDashboard">
+            <h4>Main dashboard settings</h4>
+            <div class="col-lg-4">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">Application Version Grades</div>
+                    <div class="panel-body">
+                        <form name="VersionGrade">
+                            <div ng-class="{'has-error':VersionGrade.inputVersionNumber.$invalid &&
+                                                        VersionGrade.inputVersionNumber.$dirty}">
+                                <label class="col-md-2 control-label" for="management.inputVersionNumber">Version Number</label>
+                                <div class="col-md-3">
+                                    <input name="inputVersionNumber" id="inputVersionNumber" type="text" class="form-control" placeholder="(requiered)" ng-model="management.versionNumber"
+                                        required>
+                                </div>
+                                <span class="help-block hes-error col-md-3">
+                                    <span ng-show="VersionGrade.inputVersionNumber.$error.required">Version Number is required</span>
+                                </span>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-1 col-md-offset-2">
+                                    <button class="btn btn-primary" style="margin-right:10px" ng-click="management.setRC1Grade()" ng-disabled="VersionGrade.$invalid">
+                                        Set RC1
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                        <div class="form-group">
+                            <div class="col-md-1 col-md-offset-2">
+                                <button class="btn btn-primary" style="margin-right:10px" ng-click="management.setGAGrade()">
+                                    Set GA
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">Engine Version Grades</div>
+                    <div class="panel-body">
+                        <form name="engineVersionGrade">
+                            <div class="row">
+                                <div ng-class="{'has-error':engineVersionGrade.inputEngineVersionNumber.$invalid &&
+                                                        engineVersionGrade.inputEngineVersionNumber.$dirty}">
+                                    <label class="col-md-2 control-label" for="management.inputEngineVersionNumber">Version Number</label>
+                                    <div class="col-md-3">
+                                        <input name="inputEngineVersionNumber" id="inputEngineVersionNumber" type="text" class="form-control" placeholder="(requiered)"
+                                            ng-model="management.engineVersionNumber" required>
+                                    </div>
+                                    <span class="help-block hes-error col-md-3">
+                                    <span ng-show="engineVersionGrade.inputEngineVersionNumber.$error.required">Version Number is required</span>
+                                    </span>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-md-1 col-md-offset-1">
+                                        <button class="btn btn-primary" style="margin-right:10px" ng-click="management.setEngineGrade()" ng-disabled="engineVersionGrade.$invalid">
+                                        Set engine grade
+                                    </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <i style="margin-left:15px;" class="fa fa-hand-paper-o" aria-hidden="true"></i><label>Please enter new version number!</label>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-2">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">Update Timeline</div>
+                    <div class="panel-body">
+                        <div flow-init flow-name="uploader.flow" flow-files-added="management.processFiles($files)">
+                            <button class="btn btn-primary" ng-hide="$flow.files.length" flow-btn flow-attrs="{accept:'image/*'}">
+                                <i class="fa fa-folder-open"></i> Uplaod Timeline
+                                <input type="file" flow-btn style="visibility: hidden; position: absolute;"/>
+                            </button>
+                            <button class="btn btn-danger" ng-show="$flow.files.length" ng-click="$flow.cancel()"><i class="glyphicon glyphicon-remove"></i> Remove</button>
+                            <button class="btn btn-success" ng-disabled="$flow.files.length < 1" ng-show="$flow.files.length" ng-click="management.updateTimeline($flow.files[0])"><i class="fa fa-upload"></i> Upload Image</button>
+
+                            <div class="thumbnail" ng-hide="$flow.files.length">
+                                <img src="http://www.placehold.it/200x150/EFEFEF/AAAAAA&text=no+image" />
+                            </div>
+                            <div class="thumbnail" ng-show="$flow.files.length">
+                                <img flow-img="$flow.files[0]" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

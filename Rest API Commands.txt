@@ -1,0 +1,6 @@
+GET LIST OF QUERIES:
+http://tfs2015app:8080/tfs/DefaultCollection/Enterprise/_apis/wit/queries?$depth=1&api-version=2.2
+
+GET QUERY RESULTS:
+http://tfs2015app:8080/tfs/DefaultCollection/Enterprise/_apis/wit/wiql/93b5197e-5a51-438e-87ed-5437afc83930?api-version=1.0
+

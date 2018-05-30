@@ -1,0 +1,56 @@
+/*MENU OPTION IN THE HEADER -> Reports, Builds, Subscriptions*/
+.navbar-default .navbar-nav>li>a {
+    color:white; 
+}
+
+/*red panel for failed builds*/
+.panel-body > .panel-red {
+    background-color: #ff0000;
+}
+
+/*page wrapper in views without sidebar*/
+#page-wrapper-nosidebar {
+  padding: 0 15px;
+  min-height: 568px;
+  background-color: white;
+}
+
+/*TOP NAVBAR -> INDEX*/
+.navbar-static-top {
+    background-color: #337ab7 !important;
+    margin-bottom: 0 !important;
+}
+
+/*CxDashboard title in the header*/
+.navbar-brand{
+    color:white !important;
+}
+
+/*Button Account in the header*/
+.navbar-right > li > a {
+    color:white !important;
+    cursor: pointer;
+}
+
+.type{
+    visibility:hidden;
+}
+
+.int{
+    visibility:visible;
+}
+
+.thumbnail {
+    max-width: 200px; max-height: 150px; line-height: 20px; margin-bottom: 5px;
+}
+
+.nav-pills > li {
+    float:none;
+    display:inline-block;
+    *display:inline;
+     zoom:1;
+}
+
+.nav-pills {
+    margin-left: 540px;
+}

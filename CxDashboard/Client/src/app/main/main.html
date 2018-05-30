@@ -1,0 +1,209 @@
+<div id="page-wrapper-nosidebar">
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">Main Dashboard</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">Release Timeline</div>
+                <div class="panel-body">
+                    <img data-ng-src="{{main.timeline}}" alt="Application Time line" class="col-md-12" />
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <div class="panel panel-default">
+                <div class="panel-heading">Application KPIs</div>
+                <div class="panel-body">
+                    <ul class="nav nav-tabs">
+                        <li class="active"><a href="#CurrentApplicationGrade" data-toggle="tab">Current</a>
+                        </li>
+                        <li ng-repeat="singelVersion in main.oldVersionList"><a href="#appVersion{{main.getVersionString(singelVersion.applicationVersion)}}" data-toggle="tab">{{singelVersion.applicationVersion}}</a>
+                        </li>
+                    </ul>
+
+                    <div class="tab-content">
+                        <div class="tab-pane fade in active" id="CurrentApplicationGrade">
+                            <div class="panel panel-{{main.appGrade.color}}">
+                                <div class="panel-heading">
+                                    <div class="row">
+                                        <div class="col-xs-3">
+                                            <i class="fa fa-{{main.appGrade.marx}}-circle fa-5x"></i>
+                                        </div>
+                                        <div class="col-xs-9 text-right">
+                                            <div class="huge">{{main.appGrade.data}}</div>
+                                            <div>{{main.appGrade.name}}</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <a href="#" ng-click="main.showAppDetails(main.appGrade.chartData)">
+                                    <div class="panel-footer">
+                                        <span class="pull-left"><strong>View Details</strong></span>
+                                        <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                        <div ng-repeat="singelVersion in main.oldVersionList" class="tab-pane fade" id="appVersion{{main.getVersionString(singelVersion.applicationVersion)}}">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <div class="row">
+                                        <div class="table-responsive">
+                                            <table class="table table-striped">
+                                                <thead>
+                                                    <tr>
+                                                        <th>#</th>
+                                                        <th>Delivery date</th>
+                                                        <th>Presumed grade</th>
+                                                        <th>Actual grade</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td>RC1</td>
+                                                        <td>{{singelVersion.rC1DateTime != '01/01/01' ? singelVersion.rC1DateTime
+                                                            : '-'}}</td>
+                                                        <td>{{singelVersion.rC1QualityGrade}}</td>
+                                                        <td ng-click="main.showAppDetails(singelVersion.rC1ActualGrade.dataList)">{{singelVersion.rC1ActualGrade.grade}}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>GA</td>
+                                                        <td>{{singelVersion.gaDateTime != '01/01/01' ? singelVersion.gaDateTime
+                                                            : '-'}}</td>
+                                                        <td>{{singelVersion.gaQualityGrade}}</td>
+                                                        <td ng-click="main.showAppDetails(singelVersion.gaActualGrade.dataList)">{{singelVersion.gaActualGrade.grade}}</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6" ng-repeat="AppappCodeChart in main.applicationCodeCoverage">
+                        <div class="panel panel-{{AppappCodeChart.color}}">
+                            <div class="panel-heading">
+                                <div class="row">
+                                    <div class="col-xs-2">
+                                        <i class="fa fa-{{AppappCodeChart.marx}}-circle fa-5x"></i>
+                                    </div>
+                                    <div class="col-xs-10 text-right">
+                                        <div class="huge">{{AppappCodeChart.data}}</div>
+                                        <div>{{AppappCodeChart.name}}</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="panel panel-default">
+                <div class="panel-heading">Engine KPIs</div>
+                <div class="panel-body">
+                    <ul class="nav nav-tabs">
+                        <li class="active"><a href="#CurrentEngineGrade" data-toggle="tab">Current</a>
+                        </li>
+                        <li ng-repeat="singelEngineVersion in main.oldVersionEngineList"><a href="#engineVersion{{main.getVersionString(singelEngineVersion.applicationVersion)}}" data-toggle="tab">{{singelEngineVersion.applicationVersion}}</a>
+                        </li>
+                    </ul>
+
+                    <div class="tab-content">
+                        <div class="tab-pane fade in active" id="CurrentEngineGrade">
+                            <div class="panel panel-{{main.engineGrade.color}}">
+                                <div class="panel-heading">
+                                    <div class="row">
+                                        <div class="col-xs-3">
+                                            <i class="fa fa-{{main.engineGrade.marx}}-circle fa-5x"></i>
+                                        </div>
+                                        <div class="col-xs-9 text-right">
+                                            <div class="huge">{{main.engineGrade.data}}</div>
+                                            <div>{{main.engineGrade.name}}</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <a href="#" ng-click="main.showEngineDetails(main.engineGrade.chartData)">
+                                    <div class="panel-footer">
+                                        <span class="pull-left"><strong>View Details</strong></span>
+                                        <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                        <div ng-repeat="singelEngineVersion in main.oldVersionEngineList" class="tab-pane fade" id="engineVersion{{main.getVersionString(singelEngineVersion.applicationVersion)}}">
+                            <div class="panel panel-{{singelEngineVersion.color}}">
+                                <div class="panel-heading">
+                                    <div class="row">
+                                        <div class="col-xs-3">
+                                            <i class="fa fa-{{singelEngineVersion.marx}}-circle fa-5x"></i>
+                                        </div>
+                                        <div class="col-xs-9 text-right">
+                                            <div class="huge">{{singelEngineVersion.data}}</div>
+                                            <div>{{singelEngineVersion.name}}</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <a href="#" ng-click="main.showEngineDetails(singelEngineVersion.chartData)">
+                                    <div class="panel-footer">
+                                        <span class="pull-left"><strong>View Details</strong></span>
+                                        <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6" ng-repeat="engineappCodeChart in main.engineCodeCoverage">
+                        <div class="panel panel-{{engineappCodeChart.color}}">
+                            <div class="panel-heading">
+                                <div class="row">
+                                    <div class="col-xs-2">
+                                        <i class="fa fa-{{engineappCodeChart.marx}}-circle fa-5x"></i>
+                                    </div>
+                                    <div class="col-xs-10 text-right">
+                                        <div class="huge">{{engineappCodeChart.data}}</div>
+                                        <div>{{engineappCodeChart.name}}</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="panel panel-default">
+                <div class="panel-heading">CI KPIs</div>
+                <div class="panel-body">
+                    <div ng-repeat="smoke in main.smokeGrades">
+                        <div class="panel panel-{{smoke.color}}">
+                            <div class="panel-heading">
+                                <div class="row">
+                                    <div class="col-xs-3">
+                                        <i class="fa fa-{{smoke.marx}}-circle fa-5x"></i>
+                                    </div>
+                                    <div ng-click="main.showEngineDetails(smoke.chartData)" class="col-xs-9 text-right">
+                                        <div class="huge">{{smoke.data}}</div>
+                                        <div>{{smoke.name}}</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>

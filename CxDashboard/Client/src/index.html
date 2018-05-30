@@ -1,0 +1,90 @@
+<!doctype html>
+<html ng-app="cxDashboard">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="description" content="Checkmarx Dashboard">
+  <meta name="author" content="Checkmarx">
+  <meta name="viewport" content="width=device-width">
+  <link rel="icon" href="./assets/images/favicon.ico" />
+  <title>CxDashboard</title>
+  <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+
+  <!-- build:css({.tmp/serve,src}) styles/vendor.css -->
+  <!-- bower:css -->
+  <!-- run `gulp inject` to automatically populate bower styles dependencies -->
+  <!-- endbower -->
+  <!-- endbuild -->
+
+  <!-- build:css({.tmp/serve,src}) styles/app.css -->
+  <!-- inject:css -->
+  <!-- css files will be automatically insert here -->
+  <!-- endinject -->
+  <!-- endbuild -->
+</head>
+
+<body ng-controller="MainController as main">
+  <!--[if lt IE 10]>
+      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+  <div id="wrapper">
+    <nav class="navbar navbar-default navbar-static-top" role="navigation">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+        <a class="navbar-brand" ui-sref="home">CxDashboard</a>
+      </div>
+      <ul class="nav navbar-nav navbar-collapse" role="navigation">
+        <li><a ui-sref="reports">Reports</a></li>
+        <!--<li><a href="#" class="test">Builds</a></li>
+                <li><a href="#">Subscriptions</a></li>
+                <li><a href="#">Management</a></li>-->
+      </ul>
+      <ul class="nav navbar-top-links navbar-right">
+        <li>
+          <a class="fa fa-cog" ng-hide="!main.userData.isLoggedIn" aria-hidden="true" ui-sref="management"></a>
+        </li>
+        <li class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown">
+            <i class="fa fa-user fa-fw"></i> {{main.userData.userName}} <b class="caret"></b>
+          </a>
+          <ul class="dropdown-menu">
+            <li ng-hide="main.userData.isLoggedIn">
+              <a ui-sref="login"><i class="fa fa-user fa-fw"></i> Login</a>
+            </li>
+            <li>
+              <a href="" ng-click="main.logOut()" ng-hide="!main.userData.isLoggedIn"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </nav>
+
+    <!-- View-Route -->
+
+    <div ui-view></div>
+  </div>
+  <!-- build:js(src) scripts/vendor.js -->
+  <!-- bower:js -->
+  <!-- run `gulp inject` to automatically populate bower script dependencies -->
+  <!-- endbower -->
+  <!-- endbuild -->
+
+  <!-- build:js({.tmp/serve,.tmp/partials,src}) scripts/app.js -->
+  <!-- inject:js -->
+  <!-- js files will be automatically insert here -->
+  <!-- endinject -->
+
+  <!-- inject:partials -->
+  <!-- angular templates will be automatically converted in js and inserted here -->
+  <!-- endinject -->
+  <!-- endbuild -->
+
+</body>
+
+</html>
